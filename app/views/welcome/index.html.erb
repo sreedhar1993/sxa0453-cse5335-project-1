@@ -7,6 +7,7 @@
 
 
   <script>
+    var map;
     $(document).ready(function(){
       $("button").click(function(){
         $.getJSON("https://serene-brushlands-22102.herokuapp.com/welcome/parsefile", function(arr){
@@ -28,9 +29,26 @@
           $("button").html(out)
 
 
+          var mapOptions = {
+            center: { lat: 32.730468, lng: -97.114774},
+            zoom: 3
+          };
+          map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+
+          for (var i = 0, length = myArr.length; i < length; i++) {
+            var data = myArr[i],
+                latLng = new google.maps.LatLng(data.latitude, data.longitude);
+
+            // Creating a marker and putting it on the map
+            var marker = new google.maps.Marker({
+              position: latLng,
+              map: map,
+              title: data.baloon_text
+            });
+          }
 
 
-        });
+          });
       });
     });
 
