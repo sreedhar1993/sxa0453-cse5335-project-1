@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
+  get 'welcome/parsefile'
+
   resources :widgets
 
   # The priority is based upon order of creation: first created -> highest priority.

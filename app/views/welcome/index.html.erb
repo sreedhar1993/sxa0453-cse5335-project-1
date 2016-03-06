@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+
+  <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $.getJSON("http://localhost:5000/welcome/parsefile", function(arr){
+
+          var out = "<table><tr><th>latitude</th><th>longitude</th></tr>";
+          var i;
+
+          for (i = 0; i < arr.length; i++) {
+            out += "<tr><td>" +
+                arr[i].latitude +
+                "</td><td>" +
+                arr[i].longitude +
+                "</td><td>";
+
+          }
+          out += "</table>"
+          $("button").html(out)
+
+
+
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+<button>Get JSON data</button>
+
+<div id="map" style="width: 550px; height: 450px"></div>
+
+</body>
+</html>
