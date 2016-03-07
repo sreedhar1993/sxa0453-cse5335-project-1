@@ -5,8 +5,8 @@ class WelcomeController < ApplicationController
  def index
 
  end
-  def parsefile
-    render :file => "#{Rails.root}/app/assets/javascripts/example.json",
+  def parseJSON
+    render :file => "#{Rails.root}/app/assets/javascripts/housing.json",
            :content_type => 'application/json',
            :layout => false
   end

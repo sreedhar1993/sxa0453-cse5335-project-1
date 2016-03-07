@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
-  get 'welcome/parsefile'
+  get 'welcome/parseJSON'
 
   resources :widgets
 

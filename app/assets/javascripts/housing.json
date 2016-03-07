@@ -1,0 +1,14 @@
+[
+  {"latitude": "32.730207", "longitude":"-97.120964", "type": "Apt", "title": "Arbor Oaks"},
+  {"latitude": "32.728071", "longitude":"-97.106793", "type": "Apt", "title": "Center Point"},
+  {"latitude": "32.728999", "longitude":"-97.114581", "type": "Apt", "title": "Cooper Chase"},
+  {"latitude": "32.733346", "longitude":"-97.110770", "type": "Apt", "title": "Garden Club"},
+  {"latitude": "32.733274", "longitude":"-97.110272", "type": "Apt", "title": "Maple Sqaure"},
+  {"latitude": "32.732313", "longitude":"-97.120964", "type": "Apt", "title": "Meadow Run"},
+  {"latitude": "32.732880", "longitude":"-97.119090", "type": "Apt", "title": "Timber Brook"},
+  {"latitude": "32.725324", "longitude":"-97.116488", "type": "Apt", "title": "Centennial Court"},
+  {"latitude": "32.731106", "longitude":"-97.109187", "type": "Hall", "title": "Arlington Hall"},
+  {"latitude": "32.728328", "longitude":"-97.109346", "type": "Hall", "title": "Kalpana Chawla Hall"}
+  {"latitude": "32.729091", "longitude":"-97.107995", "type": "Hall", "title": "Lipscomb Hall"},
+  {"latitude": "32.731858", "longitude":"-97.108675", "type": "Hall", "title": "Vandergriff Hall"}
+]
