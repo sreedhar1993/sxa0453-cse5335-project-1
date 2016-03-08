@@ -44,9 +44,8 @@
     }
     $(document).ready(function(){
       $("button").click(function(){
-        $.getJSON("https://http://serene-brushlands-22102.herokuapp.com/welcome/parseJSON", function(arr){
+        $.getJSON("https://localhost:5000/welcome/parseJSON", function(arr){
 
-          alert("hello");
           var out = "<table><tr><th>Name</th><th>Type</th><th>latitude</th><th>longitude</th></tr>";
           var i;
 
@@ -65,12 +64,6 @@
 
 
           $("button").html(out)
-          /*var mapOptions = {
-           center: { lat: 32.728999, lng: -97.114581},
-           zoom: 15
-           };
-           map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-           */
 
           $.each(arr, function (key, data) {
 
@@ -79,7 +72,6 @@
             var marker = new google.maps.Marker({
               position: latLng,
               map: map,
-              // icon: icon,
               title: data.title
             });
 
@@ -87,32 +79,6 @@
         });
       });
     });
-    /*function initialize() {
-     // geocoder = new google.maps.Geocoder();
-     var mapOptions = {
-     center: { lat: 32.730468, lng: -97.114774},
-     zoom: 3
-     };
-     map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-
-     $.getJSON("https://rtest-sreedhar1993.c9users.io/welcome/parseJSON", function(json1) {
-     $.each(json1, function (key, data) {
-
-     var latLng = new google.maps.LatLng(data.latitude, data.longitude);
-
-     var marker = new google.maps.Marker({
-     position: latLng,
-     map: map,
-     // icon: icon,
-     title: data.baloon_text
-     });
-
-
-     });
-
-     });
-     }*/
-
 
 
 
@@ -120,7 +86,7 @@
 </head>
 <body onload="initialize()" bgcolor="#E6E6FA">
 <h1>Click the UTA Hosuing to get all the apartments and residence halls at UTA.</h1>
-<button>UTA Hosuing</button>
+<button id="button">UTA Housing</button>
 
 
 <div id="map-canvas" style="float:left; width: 720px; height: 480px;"> </div>
