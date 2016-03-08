@@ -3,33 +3,28 @@
 <head>
   <style>
     table {
-      background-color: #E6E6FA;
-    }
-    th {
-      border: 1px solid grey;
       border-collapse: collapse;
-      padding: 5px;
-      color: #FF0000;
-    }
-    td {
-      border: 1px solid grey;
-      border-collapse: collapse;
-      padding: 5px;
-      color: #0000FF;
-    }
-    table tr:nth-child(odd) {
-      background-color: #f1f1f1;
-    }
-    table tr:nth-child(even) {
-      background-color: #ffffff;
+      width: 100%;
     }
 
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2}
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
   </style>
   <title>UTA Housing</title>
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart","controls","table"]}]}'></script>
 
 
   <script>
@@ -44,10 +39,13 @@
     }
     $(document).ready(function(){
       $("button").click(function(){
-        $.getJSON("https://serene-brushlands-22102.herokuapp.com/welcome/parseJSON", function(arr){
+        $.getJSON("https://rtest-sreedhar1993.c9users.io/welcome/parseJSON", function(arr){
 
-          var out = "<table><tr><th>Name</th><th>Type</th><th>latitude</th><th>longitude</th></tr>";
+          var out = "<table><tr><th>NAME</th><th>TYPE</th><th>LATITUDE</th><th>LONGITUDE</th></tr>";
           var i;
+          var apt1=0;
+          var hall1=0;
+          var s1="Apt";
 
           for (i = 0; i < arr.length; i++) {
             out += "<tr><td>" +
@@ -59,8 +57,17 @@
                 "</td><td>" +
                 arr[i].longitude +
                 "</td></tr>";
+
+
+            var n = arr[i].type.localeCompare(s1);
+            if (n == 0)
+              apt1 += 1;
+            else
+              hall1 += 1;
+
           }
           out += "</table>"
+          drawChart(apt1,hall1);
 
 
           $("button").html(out)
@@ -80,16 +87,47 @@
       });
     });
 
+    google.load('visualization', '1.0', {'packages':['corechart']});
+
+    //Reference: https://developers.google.com/chart/interactive/docs/drawing_charts
+
+    google.setOnLoadCallback(drawChart);
+    function drawChart(apt1, hall1) {
+
+      // Create the data table.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Apartments');
+      data.addColumn('number', 'percentage');
+      data.addRows([
+        ['Apartments', apt1],
+        ['Residence Halls', hall1],
+
+      ]);
+
+      // Set chart options
+      var options = {'title':'Percentage of Apartments and Residence halls',
+        'width':600,
+        'height':480,
+        'pieStartAngle': 100,
+        is3D: true
+      };
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+
+    }
 
 
   </script>
 </head>
 <body onload="initialize()" bgcolor="#E6E6FA">
-<h1>Click the UTA Hosuing to get all the apartments and residence halls at UTA.</h1>
+<h1>Click UTA Hosuing to get all the apartments and residence halls at UTA.</h1>
 <button id="button">UTA Housing</button>
 
 
 <div id="map-canvas" style="float:left; width: 720px; height: 480px;"> </div>
+<div id="chart_div" bgcolor="#E6E6FA" style="float:right; height: 480px;"></div>
 
 </body>
 </html>
